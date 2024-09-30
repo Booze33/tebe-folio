@@ -1,29 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from './ui/button';
-//import Image from 'next/image';
-import { IoMoonSharp, IoSunny, IoDesktopSharp } from "react-icons/io5";
+import Image from 'next/image'
 
 const Theme = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : 'system');
   const element = document.documentElement;
   const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  
-  const options = [
-    {
-      icon: <IoSunny />,
-      text: "light"
-    },
-    {
-      icon: <IoMoonSharp />,
-      text: "dark"
-    },
-    {
-      icon: <IoDesktopSharp />,
-      text: "system"
-    }
-  ];
 
   const onWindowMatch = () => {
     if (localStorage.theme === 'dark' || (!("theme" in localStorage) && darkQuery.matches)){
@@ -61,23 +45,21 @@ const Theme = () => {
       }
     }
   })
-
   return (
-    <div className="hidden sm:block">
-      <div className="z-10 duration-100 dark:bg-light bg-dark rounded-full md:mr-8">
-        {
-          options?.map(opt => (
-            <Button
-              key={opt.text}
-              className={`leading-6 text-xl rounded-full mx-1 dark:text-[#030637] text-[#FFF0F5] ${theme === opt.text && "text-sky-600"}`}
-              onClick={()=> setTheme(opt.text)}>
-              {opt.icon}
-            </Button>
-          ))
-        }
-      </div>
+    <div className="z-10 duration-100 dark:bg-gold bg-gray-100 rounded-full md:mr-8">
+      <Button  onClick={()=> setTheme('light')}>
+        <Image src='/asset/icons/moon-outline.svg' alt="add" width={24} height={24} />
+      </Button>
+
+      <Button  className={`w-8 h-8 leading-9 text-xl rounded-full m-1 text-sky-600"}`} onClick={()=> setTheme('dark')}>
+        <Image src='/asset/icons/icons8-sun.svg' alt="add" width={24} height={24} />
+      </Button>
+
+      <Button  className={`w-8 h-8 leading-9 text-xl rounded-full m-1 text-sky-600"}`} onClick={()=> setTheme('system')}>
+        <Image src='/asset/icons/desktop-outline.svg' alt="add" width={24} height={24} />
+      </Button>
     </div>
-  );
+  )
 }
 
 export default Theme;
