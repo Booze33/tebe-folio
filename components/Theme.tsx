@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-//import Image from 'next/image';
 import { IoMoonSharp, IoSunny, IoDesktopSharp } from "react-icons/io5";
 
-const Theme = () => {
+const Theme = ({ show }:{ show: boolean }) => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : 'system');
   const element = document.documentElement;
   const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -63,7 +62,7 @@ const Theme = () => {
   })
 
   return (
-    <div className="hidden sm:block">
+    <div  className={`z-20 ${show ? 'block' : 'hidden sm:block mr-[2rem]'}`}>
       <div className="z-10 duration-100 dark:bg-light bg-dark rounded-full md:mr-8">
         {
           options?.map(opt => (
