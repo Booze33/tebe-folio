@@ -1,7 +1,10 @@
+'use client';
+
 import React from 'react'
 import Logo from './Logo'
 import Link from 'next/link'
 import Theme from './Theme'
+import { motion } from 'framer-motion';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,9 +14,27 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { RiMenu5Fill } from "react-icons/ri";
 
+const containerVariants = {
+  hidden: {
+    y: -17,
+  },
+  visible: {
+    opacity: 1,
+    y: 1,
+    transition: {
+      duration: 1.5,
+      ease: "easeInOut",
+    }
+  },
+}
+
 const Navbar = () => {
   return (
-    <div className="flex flex-row justify-between w-full h-[4rem] mt-4 pt-4 fixed ml-4 border-b-2 dark:border-indigo-200 border-indigo-950 dark:bg-dark bg-light z-20">
+    <motion.div
+      variants={containerVariants}
+      initial='hidden'
+      animate='visible'
+      className="flex flex-row justify-between w-full h-[4rem] mt-4 pt-4 fixed ml-4 border-b-2 dark:border-indigo-200 border-indigo-950 dark:bg-dark bg-light z-20">
       <Logo />
 
       <div className="flex-row justify-between duration-100 hidden sm:flex bg:light w-display">
@@ -53,7 +74,7 @@ const Navbar = () => {
       </DropdownMenu>
 
       <Theme show={false} />
-    </div>
+    </motion.div>
   )
 }
 
