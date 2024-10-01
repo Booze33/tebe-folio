@@ -9,7 +9,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { RiMenu5Fill } from "react-icons/ri";
@@ -34,7 +33,7 @@ const Navbar = () => {
       variants={containerVariants}
       initial='hidden'
       animate='visible'
-      className="flex flex-row justify-between w-full h-[4rem] mt-4 pt-4 fixed ml-4 border-b-2 dark:border-indigo-200 border-indigo-950 dark:bg-dark bg-light z-20">
+      className="flex flex-row justify-between w-full h-[4.5rem] mt-4 pt-4 fixed ml-4 border-b-2 dark:border-indigo-200 border-indigo-950 dark:bg-dark bg-light z-20">
       <Logo />
 
       <div className="flex-row justify-between duration-100 hidden sm:flex bg:light w-display">
@@ -55,17 +54,15 @@ const Navbar = () => {
         <DropdownMenuTrigger className="sm:hidden block w-12 h-6">
           <RiMenu5Fill className="w-8 h-8" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="dark:bg-dark bg-light z-10 mt-6 mr-6 w-[231px] h-[15rem] flex justify-center items-center flex-col">
+        <DropdownMenuContent className="dark:bg-dark bg-light z-10 mt-6 mr-6 w-[231px] h-[15rem] flex justify-center items-center flex-col text-2xl">
           <DropdownMenuItem>
-            <Link className="mr-4 hover:underline hover:scale-105 duration-500" href="/">Portfolio</Link>
-            <DropdownMenuSeparator />
+            <Link className="ml-2 hover:underline duration-500 text-2xl" href="/">Portfolio</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link className="ml-2 hover:underline hover:scale-105 duration-500" href="/about">About</Link>
-            <DropdownMenuSeparator /> 
+            <Link className="ml-2 hover:underline duration-500 text-2xl" href="/about">About</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link className="ml-4 hover:underline hover:scale-105 duration-500" href="/contact">Contact</Link>
+            <Link className="ml-4 hover:underline duration-500 text-2xl" href="/contact">Contact</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Theme show={true} />
