@@ -1,5 +1,6 @@
 'use client'
 
+import Boxes from '@/components/Boxes';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
@@ -31,8 +32,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="sm:px-12 px-6 mt-32 sm:mt-40 flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
+      <div className="sm:px-12 px-6 mt-32 sm:mt-40 mb-4 flex flex-col items-center justify-center">
         <motion.h1
           variants={dropVariants}
           initial="hidden"
@@ -61,6 +62,8 @@ const Home = () => {
         </motion.h1>
 
       </div>
+
+      <Boxes />
     </div>
   );
 }
