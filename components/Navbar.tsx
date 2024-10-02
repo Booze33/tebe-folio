@@ -33,7 +33,7 @@ const Navbar = () => {
       variants={containerVariants}
       initial='hidden'
       animate='visible'
-      className="flex flex-row justify-between w-full h-[4.5rem] mt-4 pt-4 fixed ml-4 border-b-2 dark:border-indigo-200 border-indigo-950 dark:bg-dark bg-light z-20">
+      className="flex flex-row justify-between w-[97vw] h-[4.5rem] mt-4 pt-4 fixed mx-4 border-b-2 dark:border-indigo-200 border-indigo-950 dark:bg-dark bg-light z-20 rounded-lg">
       <Logo />
 
       <div className="flex-row justify-between duration-100 hidden sm:flex bg:light w-display">
