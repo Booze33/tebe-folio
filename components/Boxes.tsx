@@ -10,7 +10,7 @@ const Boxes = () => {
       opacity: 1,
       transition: {
         duration: 3,
-        delay: 1,
+        delay: 2,
         ease: "easeInOut"
       }
     }
