@@ -8,6 +8,7 @@ import { TbCircleFilled } from "react-icons/tb";
 import Projects from '@/components/Projects';
 import Link from 'next/link';
 import Image from "next/image";
+import { CardContainer, CardBody, CardItem } from '@/components/ui/3d-card';
 
 const dropVariants = {
   hidden: {
@@ -113,19 +114,26 @@ const Home = () => {
 
         <div className="w-full flex flex-col justify-around sm:grid sm:grid-cols-2 sm:grid-rows-6 sm:gap-x-4 sm:gap-y-2 my-24">
           {Projects.map((project: Project) => (
-            <Link
-              key={project.id}
-              href="/projects/inventory"
-              className=" flex flex-col pl-left rounded-xl col-start-1 col-end-3 row-span-1 my-9 sm:mb-12 duration-500 hover:shadow-md hover:shadow-dark"
-            >
-              <Image src={project.dp} alt="Description" width={12} height={12} className="w-large sm:w-image sm:h-large h-tiny rounded-3xl" />
-              <h3 className="bg-indigo-200 text-indigo-700 py-1 px-2 w-32 rounded-2xl my-6 flex flex-row text-end justify-end">
-                <TbCircleFilled className="mt-1" />
-                <span> Solo Project</span>
-              </h3>
-              <h2 className="text-2xl sm:text-3xl mb-2 font-curved text-both">{project.title}</h2>
-              <p className="font-curved text-justify w-nine">{project.text}</p>
-            </Link>
+            <CardContainer key={project.id}>
+              <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+                <Link
+                  href="/projects/inventory"
+                  className=" flex flex-col pl-left rounded-xl col-start-1 col-end-3 row-span-1 my-9 sm:mb-12 duration-500 hover:shadow-md hover:shadow-dark"
+                >
+                  <CardItem translateZ="70" className="w-full mt-4">
+                    <Image src={project.dp} alt={project.title} width={12} height={12} className="w-large sm:w-image sm:h-large h-tiny rounded-3xl" />
+                  </CardItem>
+                  
+                  <h3 className="bg-indigo-200 text-indigo-700 py-1 px-2 w-32 rounded-2xl my-6 flex flex-row text-end justify-end">
+                    <TbCircleFilled className="mt-1" />
+                    <span> Solo Project</span>
+                  </h3>
+                  <h2 className="text-2xl sm:text-3xl mb-2 font-curved text-both">{project.title}</h2>
+                  <p className="font-curved text-justify w-nine">{project.text}</p>
+                </Link>
+              </CardBody>
+              
+            </CardContainer>
           ))}
         </div>
       </section>
