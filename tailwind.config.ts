@@ -21,6 +21,10 @@ const config: Config = {
         'both': '#9290C3',
         'transparent': 'transparent',
       },
+      gridTemplateRows: {
+        // Simple 16 row grid
+        'card': 'repeat(6, minmax(0, 1fr))',
+      },
       width: {
         'logo': '6rem',
         'img': '7rem',
