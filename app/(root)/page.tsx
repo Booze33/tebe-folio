@@ -86,7 +86,7 @@ const Home = () => {
 
       <Boxes />
 
-      <section className="sm:px-28 px-6 mt-32 w-screen pt-32 flex flex-col rounded-t-top dark:bg-dark-2 bg-light-2">
+      <section className="sm:px-28 px-2 mt-32 w-screen pt-32 flex flex-col rounded-t-top dark:bg-dark-2 bg-light-2">
         <motion.h1
           variants={pathVariants}
           initial="hidden"
@@ -112,21 +112,26 @@ const Home = () => {
           </div>
         </motion.div>
 
-        <div className="w-full bg-red-800 flex flex-col justify-around sm:grid sm:grid-cols-2 sm:grid-rows-card sm:gap-x-4 sm:gap-y-2 my-4">
+        <div className="w-[16rem] bg-green-400 sm:w-full flex flex-col justify-around sm:grid sm:grid-cols-2 sm:grid-rows-card sm:gap-x-4 sm:gap-y-2 my-4">
           {Projects.map((project: Project) => (
             <CardContainer key={project.id}>
-              <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full sm:w-[26rem] h-[36rem] rounded-xl p-6 border  ">
-                <Link href="/projects/inventory">
-                  <CardItem translateZ="70" className="w-full mt-[-1.6rem]">
-                    <Image src={project.dp} alt={project.title} width={10} height={10} className="w-full sm:w-full sm:h-large rounded-3xl h-60 object-cover group-hover/card:shadow-xl" />
+              <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-[14rem] sm:w-[26rem] h-[36rem] rounded-xl p-6 border">
+                <Link href={`/projects/${project.id}`}>
+                  <CardItem translateZ="70" className="w-[26rem] ml-[-1.5rem] mt-[-1.6rem]">
+                    <Image src={project.dp} alt={project.title} width={10} height={10} className=" sm:w-[26rem] w-[10rem] sm:h-large rounded-xl h-60 object-cover group-hover/card:shadow-xl" />
                   </CardItem>
-                  
-                  <h3 className="bg-indigo-200 text-indigo-700 py-1 px-2 w-32 rounded-2xl my-6 flex flex-row text-end justify-end">
-                    <TbCircleFilled className="mt-1" />
+                  {(project.type === 'solo' ? 
+                    <h3 className="bg-indigo-200 text-indigo-700 py-1 px-2 w-32 rounded-2xl my-6 flex flex-row text-end justify-end">
+                      <TbCircleFilled className="mt-1" />
                     <span> Solo Project</span>
                   </h3>
-                  <h2 className="text-2xl sm:text-3xl mb-2 font-curved text-both">{project.title}</h2>
-                  <p className="font-curved text-justify w-nine">{project.text}</p>
+                  : <h3 className="bg-pink-200 text-rose-800 py-1 px-2 rounded-2xl my-6 flex flex-row w-48">
+                      <TbCircleFilled className="mt-1" />
+                    <span> Collaborative Project</span>
+                </h3>
+                  )}
+                  <h2 className="text-2xl sm:text-3xl mb-2 font-curved font-semibold">{project.title}</h2>
+                  <p className="font-curved sm:text-justify text-[14px] w-nine">{project.text}</p>
                 </Link>
               </CardBody>
               
