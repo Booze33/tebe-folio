@@ -6,6 +6,8 @@ import { useState,  useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import { TbCircleFilled } from "react-icons/tb";
 import Projects from '@/components/Projects';
+import Others from '@/components/Others';
+import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from "next/image";
 import { CardContainer, CardBody, CardItem } from '@/components/ui/3d-card';
@@ -59,14 +61,14 @@ const Home = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-3xl sm:text-5xl md:text-7xl text-center sm:w-display w-feature font-curved"
+          className="text-3xl sm:text-5xl md:text-7xl text-center sm:w-display w-feature font-curved h-14 sm:h-32"
         >{`I'm Tebe Tisloh`}</motion.h1>
         <motion.h1
           variants={dropVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-xl sm:text-4xl md:text-6xl text-center sm:w-display w-feature font-curved sec-text"
+          className="text-xl sm:text-4xl md:text-6xl text-center sm:w-display w-feature font-curved sec-text h-12 sm:h-28"
         >
           <span className="sec-text italic">
             {showTypewriter && (
@@ -112,13 +114,13 @@ const Home = () => {
           </div>
         </motion.div>
 
-        <div className="w-[16rem] bg-green-400 sm:w-full flex flex-col justify-around sm:grid sm:grid-cols-2 sm:grid-rows-card sm:gap-x-4 sm:gap-y-2 my-4">
+        <div className="w-[24rem] bg-green-400 sm:w-full flex flex-col justify-around sm:grid sm:grid-cols-2 sm:grid-rows-card sm:gap-x-4 sm:gap-y-2 my-4">
           {Projects.map((project: Project) => (
             <CardContainer key={project.id}>
-              <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-[14rem] sm:w-[26rem] h-[36rem] rounded-xl p-6 border">
+              <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-[23rem] sm:w-[26rem] h-[36rem] rounded-xl p-6 border">
                 <Link href={`/projects/${project.id}`}>
                   <CardItem translateZ="70" className="w-[26rem] ml-[-1.5rem] mt-[-1.6rem]">
-                    <Image src={project.dp} alt={project.title} width={10} height={10} className=" sm:w-[26rem] w-[10rem] sm:h-large rounded-xl h-60 object-cover group-hover/card:shadow-xl" />
+                    <Image src={project.dp} alt={project.title} width={10} height={10} className=" sm:w-[26rem] w-[23rem] sm:h-large rounded-xl h-60 object-cover group-hover/card:shadow-xl" />
                   </CardItem>
                   {(project.type === 'solo' ? 
                     <h3 className="bg-indigo-200 text-indigo-700 py-1 px-2 w-32 rounded-2xl my-6 flex flex-row text-end justify-end">
@@ -138,7 +140,34 @@ const Home = () => {
             </CardContainer>
           ))}
         </div>
+
+        <motion.h1
+          variants={pathVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-3xl sm:text-5xl mb-4 font-curved text-both">Other Projects</motion.h1>
+        <motion.p
+          variants={pathVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="font-curved text-justify"
+        >Smaller projects that I worked on.</motion.p>
+
+        <div className="mt-8">
+          {Others.map((project: Others) => (
+            <Link href={project.href} key={project.id} className="flex flex-row my-4">
+              <Image src={project.dp} alt={project.text} width={10} height={10} className="w-img h-img sm:w-img2 sm:h-img2 rounded-2xl" />
+              <div className="ml-3 sm:ml-5">
+                <h2 className="text-2xl sm:text-3xl mb-2 font-curved text-both">{project.title}</h2>
+                <p className="font-curved text-justify text-sm sm:text-xl">{project.text}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
+      <Footer />
     </div>
   );
 }

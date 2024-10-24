@@ -5,3 +5,11 @@ declare type Project = {
   dp: string;
   type: string;
 };
+
+declare type Others = {
+  id: number;
+  title: string;
+  text: string;
+  dp: string;
+  href: string;
+};

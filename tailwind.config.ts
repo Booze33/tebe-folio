@@ -23,7 +23,20 @@ const config: Config = {
       },
       gridTemplateRows: {
         // Simple 16 row grid
-        'card': 'repeat(6, minmax(0, 1fr))',
+        'card': 'repeat(5, minmax(0, 1fr))',
+      },
+      fontFamily: {
+        'cursive': "Dancing Script", 
+        'curved': "Oswald",
+      },
+      textColor: {
+        'light': '#030637',
+        'light-2': '#070f2b',
+        'dark': '#f1eaff',
+        'dark-2': '#F7FFE5',
+        'gold': '#F39F5A',
+        'collab': '#CD104D',
+        'both': '#9290C3'
       },
       width: {
         'logo': '6rem',
