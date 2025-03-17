@@ -56,17 +56,17 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, refs }) => {
   }, [refs]);
 
   return (
-    <nav className="fixed bottom-8 left-[10vw] w-[80vw] bg-white shadow-md p-4 flex gap-4 justify-center md:justify-start md:px-8">
+    <nav className="fixed bottom-16 left-[10vw] p-[3px] w-[80vw] h-[3.5rem] bg-white/30 backdrop-blur-sm shadow-md flex gap-4 justify-center md:justify-start md:px-8 rounded-full">
       {Menu.map((item) => {
         const isActive = activeSection === item.name.toLowerCase();
         return (
           <button
             key={item.name}
             onClick={() => scrollToSection(refs[item.name.toLowerCase()])}
-            className= {`flex items-center gap-2 px-4 rounded-md transition ${ isActive ? 'bg-blue-500 text-white' : 'bg-transparent text-black' } md:px-6`}
+            className= {`flex items-center px-3 h-[3rem] w-[3rem] lg:w-[10rem] sm:mx-[2rem] transition ${ isActive ? 'bg-[#fff] text-black rounded-full' : 'bg-transparent text-[#fff]' } md:px-12`}
           >
             {item.icon}
-            <span className="hidden lg:inline">{item.name}</span>
+            <span className="hidden lg:inline font-bold">{item.name}</span>
           </button>
         );
       })}

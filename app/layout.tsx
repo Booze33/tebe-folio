@@ -20,7 +20,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} bg-[url(/image/bg-img.png)] bg-contain md:bg-cover bg-[#090826] bg-fixed min-h-screen bg-no-repeat text-gray-900`}>
+      <body className={`${roboto.className} md:bg-[url(/image/bg-img.png)] bg-[url(/image/mobile-bg.png)] bg-contain md:bg-cover bg-[#090826] bg-fixed min-h-screen bg-no-repeat`}>
         {children}
       </body>
     </html>
