@@ -63,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, refs }) => {
           <button
             key={item.name}
             onClick={() => scrollToSection(refs[item.name.toLowerCase()])}
-            className= {`flex items-center justify-center h-[3rem] w-[3rem] lg:w-[12rem] transition ${ isActive ? 'bg-[#fff] text-black rounded-full' : 'bg-transparent text-[#fff]' }`}
+            className= {`flex items-center justify-center h-[3rem] w-[3rem] lg:w-[12rem] transition hover:cursor-pointer ${ isActive ? 'bg-[#fff] text-black rounded-full' : 'bg-transparent text-[#fff]' }`}
           >
             {item.icon}
             <span className="hidden lg:inline font-bold">{item.name}</span>

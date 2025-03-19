@@ -120,3 +120,40 @@
     @apply bg-background text-foreground;
   }
 }
+
+.button-hover {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 2em;
+  height: 3.5em;
+  width: 12rem;
+  font: 300 1em/3.5em 'Open Sans', sans-serif;
+  letter-spacing: 0.08em;
+  color: #000;
+  background: #ffc107;
+  border: none;
+  border-radius: 50px;
+  transition: 0.35s ease all;
+  text-decoration: none;
+}
+
+.button-hover .icon {
+  display: none;
+}
+
+.button-hover:hover {
+  background: #fff;
+}
+
+.button-hover:hover .icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.button-hover:hover .text {
+  display: none;
+}
+
