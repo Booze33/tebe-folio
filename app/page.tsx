@@ -20,9 +20,15 @@ const Home: React.FC = () => {
   return (
     <div className="w-[100vw] py-[2rem]">
       <section ref={refs.home} id="home" className="h-screen bg-transparent w-full px-[3rem] md:px-[8rem]">
-        <div className="flex flex-row justify-between w-[100%] mb-[4rem]">
-          <div>
-            <h4 className="text-[#fff] text-justify font-bold">Open To Work</h4>
+        <div className="flex flex-row justify-between items-center w-[100%] mb-[4rem] h-[3rem]">
+          <div className="flex flex-row items-center">
+            <div className="relative flex mr-4">
+              <div className="absolute inline-flex w-2 h-2 bg-green-500 rounded-full animate-ping opacity-75" />
+              <div className="relative inline-flex w-[6px] h-[6px] rounded-full bg-green-500" />
+            </div>
+            <h4 className="text-[#fff] text-justify font-bold sm:text-[16px] text-[14px]">
+              Open To Work
+            </h4>
           </div>
           <CVButton />
         </div>
