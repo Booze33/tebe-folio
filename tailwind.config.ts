@@ -1,6 +1,9 @@
 module.exports = {
   theme: {
     extend: {
+      fontWeight: {
+        heavy: 950,
+      },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },

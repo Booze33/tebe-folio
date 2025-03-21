@@ -121,6 +121,10 @@
   }
 }
 
+.text-shadow {
+  text-shadow: 1px 1px 0 black, -1px -1px 0 black;
+}
+
 .button-hover {
   position: relative;
   display: flex;
@@ -129,7 +133,7 @@
   overflow: hidden;
   padding: 0 2em;
   height: 3em;
-  margin-right: -2rem;
+  margin-right: -1rem;
   width: 11rem;
   font: 300 1em/3.5em 'Open Sans', sans-serif;
   letter-spacing: 0.08em;

@@ -3,7 +3,7 @@ import { Roboto } from 'next/font/google'
 import "./globals.css";
 
 const roboto = Roboto({
-  weight: '200',
+  weight: '400',
   subsets: ['latin'],
 })
 
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className} bg-gradient-to-l from-[#ca6822] via-[#623c3b] to-[#10194f]`}>
-        <div className="bg-[url(/image/bg-img.png)] min-h-screen bg-fixed bg-no-repeat bg-contain bg-right-bottom sm:bg-right">
+        <div className="bg-[url(/image/bg-img.png)] min-h-screen bg-fixed bg-no-repeat bg-contain bg-right-bottom">
           {children}
         </div>
       </body>
