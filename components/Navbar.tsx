@@ -1,7 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect } from "react";
 import { UserRound, BriefcaseBusiness, FileText, ChevronsUpDown, Link } from 'lucide-react';
 
+// Navbar component
 interface SectionRefs {
   [key: string]: React.RefObject<HTMLElement>;
 }
