@@ -41,6 +41,7 @@ interface CardItemProps {
   title: string;
   type: string;
   img: string;
+  link: string;
 }
 
 const ExperienceItem: React.FC<ExperienceItemProps> = ({ position, company, time, address, description }) => {
@@ -61,16 +62,18 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ position, company, time
   );
 };
 
-const CardItem: React.FC<CardItemProps> = ({ id, title, type, img }) => {
- 
+const CardItem: React.FC<CardItemProps> = ({ id, title, type, img, link }) => {
   return (
-    <div className="mb-12 relative w-[150px] h-[25rem] rounded-lg sm:w-[40vw] bg-white">
-      <div className="ml-8 relative">
-        <div className="absolute -left-10 top-1 w-4 h-4 rounded-full bg-[#ffc107]" />
-        <h3 className="text-[#ffc107] text-xl font-bold">{title}</h3>
-        <h4 className="text-white text-lg mb-2">{type}</h4>
+    <a 
+      href={link} 
+      className="flex justify-center items-center mb-12 ml-8 w-[80vw] sm:w-[40vw] h-[25rem] rounded-lg overflow-hidden shadow-xl/30"
+      style={{ backgroundImage: `url(${img})`,  backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      <div className="flex-col bg-black/40 hover:bg-black/60 transition-all duration-300 flex justify-end px-[1rem] pb-[3rem] w-[100%] h-[25rem]">
+        <h2 className="text-white text-[32px] font-bold text-shadow">{title}</h2>
+        <div className="h-[2rem] w-[4rem] rounded bg-[#ffc107] flex justify-center items-center font-bold text-[#000]">{type}</div>
       </div>
-    </div>
+    </a>
   );
 };
 
@@ -87,10 +90,10 @@ const Experience = () => {
   return (
     <div 
       ref={containerRef}
-      className="h-screen overflow-y-auto bg-black/30 backdrop-blur-3xl w-full px-[1rem] sm:px-[8rem] pt-[2rem] pb-[4rem] z-0"
+      className="h-screen overflow-y-auto bg-black/30 backdrop-blur-3xl w-full px-4 sm:px-32 pt-8 pb-16 z-0"
     >
       <div className="relative" ref={ref}>
-        <h1 className="mb-[4rem] text-[#ffc107] text-justify text-[32px] font-black scale-x-[1.3] origin-left">Work Experience</h1>
+        <h1 className="mb-16 text-[#ffc107] text-justify text-[32px] font-black scale-x-[1.3] origin-left">Work Experience</h1>
         
         <div className="relative">
           <motion.div
@@ -109,7 +112,7 @@ const Experience = () => {
             />
           ))}
 
-          <h1 className="mb-[4rem] text-[#ffc107] text-justify text-[30px] font-black scale-x-[1.3] origin-left ml-[2rem]">Highlited Projects</h1>
+          <h1 className="mb-16 text-[#ffc107] text-justify text-[30px] font-black scale-x-[1.3] origin-left ml-8">Highlighted Projects</h1>
 
           <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4">
             {Projects.map((project, index) => (
@@ -119,6 +122,7 @@ const Experience = () => {
                 title={project.title}
                 type={project.type}
                 img={project.dp}
+                link={project.link}
               />
             ))}
           </div>

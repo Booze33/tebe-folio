@@ -1,104 +1,60 @@
-"use client";
+const Projects = [
+  {
+    id: 1,
+    title: 'Inventory Management',
+    text: 'The Inventory Management System is designed to streamline and automate the process of managing inventory in a business environment. This system aims to enhance the efficiency of inventory tracking, and provide real-time data to support decision-making processes.',
+    dp: '/asset/images/phanox.png',
+    type: 'solo'
+  },
+  {
+    id:  2,
+    title: 'Podcastr',
+    text: 'A cutting-edge AI SaaS platform that enables users to create, discover, and enjoy podcasts with advanced features like text-to-audio conversion with multi-voice AI, podcast thumbnail Image generation and seamless playback.',
+    dp: '/asset/images/podcastr.png',
+    type: 'solo'
+  },
+  {
+    id:  3,
+    title: 'Launch AI',
+    text: 'Launch AI is revolutionizing the startup ecosystem by offering a cutting-edge platform tailored for student-founders. Our AI-driven tools, namely the Dashboard, the MVP builder and the User Feedback Analyzer, streamline the startup journey, enabling rapid iterations and precise market validation.',
+    dp: '/asset/images/launch.png',
+    type: 'collab'
+  },
+  {
+    id:  4,
+    title: 'Online BookStore',
+    text: 'This app will allow you to log the books you start, record your current page numbers as you read, and mark books as finished when completed. Stay organized and monitor your reading habits and pace.',
+    dp: '/asset/images/book.png',
+    type: 'solo'
+  },
+  {
+    id:  5,
+    title: 'AI-Chat APP',
+    text: 'A full-stack app using OpenAi and ChatEngine Api. This app allows user to chat with other users and also with the AI.',
+    dp: '/asset/images/chat.png',
+    type: 'solo'
+  },
+  {
+    id:  6,
+    title: 'Web3-Crowd Funding',
+    text: 'A full-stack app with metamask pairing, smart contracts interaction, which sends ethereum devnet tokens  to campaign wallets.',
+    dp: '/asset/images/crowdFunding.jpg',
+    type: 'solo'
+  },
+  {
+    id:  7,
+    title: 'Land Rover: E-Commerce',
+    text: 'Make reservations for the rovers. Find the rover that fits your taste and go for a test drive.',
+    dp: '/asset/images/e-commerce.png',
+    type: 'collab'
+  },
+  {
+    id:  8,
+    title: 'Expense Tracker',
+    text: 'A budget app to track spending by categories like \'Food\' or \'Transport,\' helping you manage your expenses effortlessly.',
+    dp: '/asset/images/expense.png',
+    type: 'solo'
+  }
+]
 
-import React, { RefObject, useRef } from "react";
-import { motion, useScroll } from "framer-motion";
-import { WorkDetailsType } from "@/types";
-import LiIcon from "../shared/LiIcon";
-import { PortableText } from "@portabletext/react";
-import { formatDate } from "@/utils";
-import siteMetadata from "@/utils/siteMetaData";
-
-const Details = ({
-  position,
-  companyName,
-  companyUrl,
-  description,
-  location,
-  startDate,
-  endDate,
-  companyLogo,
-}: WorkDetailsType) => {
-  const ref: RefObject<HTMLLIElement> = useRef(null);
-  return (
-    <li
-      ref={ref}
-      className="my-8 first:mt-0 last:mb-0 flex flex-col justify-between"
-    >
-      <LiIcon reference={ref} logoUrl={companyLogo} />
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="ml-12 sm:ml-20 lg:ml-24 inline-block"
-      >
-        <h3 className="capitalize font-bold text-lg sm:text-2xl whitespace-nowrap ">
-          <a
-            href={companyUrl ?? ""}
-            target="_blank"
-            className="text-accent capitalize"
-            aria-label="Visit Company Website"
-          >
-            {companyName}
-          </a>
-        </h3>
-        <span className="capitalize font-bold inline-block w-full  text-sm sm:text-lg whitespace-nowrap">
-          {position}
-        </span>
-        <span className="capitalize text-sm sm:text-base text-gray">
-          <span>
-            {formatDate(startDate, "MMMM, yyyy")} -{" "}
-            {endDate ? formatDate(endDate, "MMMM, yyyy") : "Present"}
-          </span>
-          <span className="whitespace-nowrap">
-            {location ? ` | ${location}` : ""}
-          </span>
-        </span>
-        <div className="dark:text-gray-light text-gray-dark w-full prose prose-sm md:prose-lg mt-4">
-          <PortableText value={description} />
-        </div>
-      </motion.div>
-    </li>
-  );
-};
-
-const Experience = ({ jobs }: { jobs: WorkDetailsType[] | null }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center start"],
-  });
-
-  return (
-    <section className="mt-32 max-w-[731.250px] mx-auto lg:mx-0">
-      <div className="mb-16">
-        <h2 className="font-semibold text-4xl mb-4">Work Experience</h2>
-      </div>
-
-      <div className="relative w-full" ref={ref}>
-        <motion.div
-          style={{ scaleY: scrollYProgress }}
-          className="absolute left-7 sm:left-9 top-0 w-1 h-full origin-top dark:bg-light bg-dark"
-        />
-        <ul className="flex w-full flex-col items-start justify-between ml-4">
-          {jobs &&
-            jobs.map((job) => (
-              <Details
-                key={job._id}
-                _id={job._id}
-                position={job.position ?? siteMetadata.position}
-                companyName={job.companyName}
-                companyUrl={job.companyUrl ?? siteMetadata.siteUrl}
-                description={job.description ?? []}
-                location={job.location ?? ""}
-                startDate={job.startDate}
-                endDate={job.endDate}
-                companyLogo={job.companyLogo ?? undefined}
-              />
-            ))}
-        </ul>
-      </div>
-    </section>
-  );
-};
-
-export default Experience;
+export default Projects
