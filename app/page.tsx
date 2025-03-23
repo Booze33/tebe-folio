@@ -24,7 +24,6 @@ const Home: React.FC = () => {
   const [skillsRef, skillsInView] = useInView({ threshold: 0.75 });
   const [linksRef, linksInView] = useInView({ threshold: 0.5 });
 
-  // Only fade out backdrop blur when in home or links section
   const shouldFadeOut = homeInView || linksInView;
 
   return (
@@ -63,11 +62,11 @@ const Home: React.FC = () => {
           summaryRef(node);
         }}
         id="summary"
-        className={`h-screen w-full px-[1rem] sm:px-[8rem] py-[3rem] transition-all duration-500 ${
+        className={`h-[100%] w-full px-[1rem] sm:px-[8rem] py-[3rem] transition-all duration-500 ${
           shouldFadeOut ? "bg-transparent backdrop-blur-none" : "bg-black/30 backdrop-blur-3xl"
         }`}
       >
-        <div className="sm:w-[50vw] w-[100%] flex flex-col justify-start mt-[3rem]">
+        <div className="sm:w-[40vw] w-[100%] flex flex-col justify-start mt-[3rem]">
           <h1 className="mb-[4rem] text-[#ffc107] text-justify text-[32px] font-black scale-x-[1.3] origin-left">Summary</h1>
           <p className="text-[#fff] text-[16px] text-justify mb-4">
             I am an experienced and detail-oriented Software Developer dedicated to creating intuitive and impactful digital experiences. Over the years, I have honed my skills in user research, wireframing, prototyping, and visual design, always striving to balance user needs with business objectives. My passion lies in understanding how people interact with technology and crafting solutions that are both functional and aesthetically pleasing.
@@ -75,6 +74,11 @@ const Home: React.FC = () => {
           <p className="text-[#fff] text-[16px] text-justify">
             I have collaborated with diverse teams, including developers, marketers, and product managers, to bring concepts to life, ensuring seamless integration of design and functionality. My design philosophy centers on empathy and innovation—placing the user at the heart of every decision while leveraging the latest tools and trends to stay ahead in the field.
           </p>
+          <div className="w-[100%] border-[#ffc107] border-l-2 border-solid mt-[4rem] pl-[2rem]">
+            <p className="text-[#fff] text-[28px] text-justify mb-4">
+              Driven by a curiosity to learn and improve, I continuously explore new tools and methodologies to enhance my work. Whether working on web applications, mobile interfaces, or design systems, I am committed to delivering high-quality results that make a difference for users and businesses alike.
+            </p>
+          </div>
         </div>
       </section>
 
