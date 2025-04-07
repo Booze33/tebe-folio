@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll } from "framer-motion";
-import { ScrollArea } from "@/components/ui/scroll-area"
+import Projects from "../Projects";
 
 const experiences = [
   {
@@ -36,6 +36,13 @@ interface ExperienceItemProps {
   description: string;
 }
 
+interface CardItemProps {
+  id: number;
+  title: string;
+  type: string;
+  img: string;
+}
+
 const ExperienceItem: React.FC<ExperienceItemProps> = ({ position, company, time, address, description }) => {
  
   return (
@@ -49,6 +56,19 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ position, company, time
           <span>{address}</span>
         </div>
         <p className="text-white text-base">{description}</p>
+      </div>
+    </div>
+  );
+};
+
+const CardItem: React.FC<CardItemProps> = ({ id, title, type, img }) => {
+ 
+  return (
+    <div className="mb-12 relative w-[150px] h-[25rem] rounded-lg sm:w-[40vw] bg-white">
+      <div className="ml-8 relative">
+        <div className="absolute -left-10 top-1 w-4 h-4 rounded-full bg-[#ffc107]" />
+        <h3 className="text-[#ffc107] text-xl font-bold">{title}</h3>
+        <h4 className="text-white text-lg mb-2">{type}</h4>
       </div>
     </div>
   );
@@ -90,6 +110,18 @@ const Experience = () => {
           ))}
 
           <h1 className="mb-[4rem] text-[#ffc107] text-justify text-[30px] font-black scale-x-[1.3] origin-left ml-[2rem]">Highlited Projects</h1>
+
+          <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4">
+            {Projects.map((project, index) => (
+              <CardItem
+                key={index}
+                id={project.id}
+                title={project.title}
+                type={project.type}
+                img={project.dp}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
