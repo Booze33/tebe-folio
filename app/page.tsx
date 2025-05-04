@@ -5,7 +5,14 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { HomePage, Summary, Experience, Skills, Links } from "@/components/tabs";
 
-const tabs = [
+type TabName = 'Home' | 'Summary' | 'Experience' | 'Skills' | 'Links';
+
+interface Tab {
+  name: TabName;
+  component: JSX.Element;
+}
+
+const tabs: Tab[] = [
   {
     name: 'Home',
     component: <HomePage />
@@ -29,7 +36,7 @@ const tabs = [
 ];
 
 export default function Home() {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const [selectedTab, setSelectedTab] = useState<Tab>(tabs[0]);
 
   return (
     <div className="bg-[url(/image/bg-img.png)] min-h-screen bg-fixed bg-no-repeat bg-contain bg-right-bottom">

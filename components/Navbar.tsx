@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { UserRound, BriefcaseBusiness, FileText, ChevronsUpDown, Link } from 'lucide-react';
+import { Dispatch, SetStateAction } from 'react';
 
-const iconMap = {
+type TabName = 'Home' | 'Summary' | 'Experience' | 'Skills' | 'Links';
+
+const iconMap: Record<TabName, JSX.Element> = {
   'Home': <UserRound />,
   'Summary': <BriefcaseBusiness />,
   'Experience': <FileText />,
@@ -11,17 +14,14 @@ const iconMap = {
   'Links': <Link />
 };
 
-// Define the Tab interface
 interface Tab {
-  name: string;
-  // Add any other properties that your tab objects might have
+  name: TabName;
+  component: JSX.Element;
 }
-
-// Define the props interface for the Navbar component
 interface NavbarProps {
   tabs: Tab[];
   selectedTab: Tab;
-  setSelectedTab: (tab: Tab) => void;
+  setSelectedTab: Dispatch<SetStateAction<Tab>>;
 }
 
 const Navbar = ({ tabs, selectedTab, setSelectedTab }: NavbarProps) => {
