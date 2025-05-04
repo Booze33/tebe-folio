@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useRef } from "react";
+import { cn } from "@/lib/utils";
 import { motion, useScroll } from "framer-motion";
 import Projects from "../Projects";
+import { Users, PersonStanding } from 'lucide-react';
 
 const experiences = [
   {
@@ -42,6 +44,7 @@ interface CardItemProps {
   type: string;
   img: string;
   link: string;
+  text: string;
 }
 
 const ExperienceItem: React.FC<ExperienceItemProps> = ({ position, company, time, address, description }) => {
@@ -62,16 +65,35 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ position, company, time
   );
 };
 
-const CardItem: React.FC<CardItemProps> = ({ id, title, type, img, link }) => {
+const CardItem: React.FC<CardItemProps> = ({ id, title, type, img, link, text }) => {
   return (
-    <a 
-      href={link} 
-      className="flex justify-center items-center mb-12 ml-8 w-[80vw] sm:w-[40vw] h-[25rem] rounded-lg overflow-hidden shadow-xl/30"
-      style={{ backgroundImage: `url(${img})`,  backgroundSize: 'cover', backgroundPosition: 'center' }}
-    >
-      <div className="flex-col bg-black/40 hover:bg-black/60 transition-all duration-300 flex justify-end px-[1rem] pb-[3rem] w-[100%] h-[25rem]">
-        <h2 className="text-white text-[32px] font-bold text-shadow">{title}</h2>
-        <div className="h-[2rem] w-[4rem] rounded bg-[#ffc107] flex justify-center items-center font-bold text-[#000]">{type}</div>
+    <a href={link} className="max-w-xs w-full group/card"> 
+      <div className={
+        cn("cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl max-w-sm mx-auto flex flex-col justify-between p-4",)}
+        style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover' }}
+      >
+        <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black opacity-75"></div>
+
+        <div className="group-hover/card:flex flex-row items-center space-x-4 z-10 hidden">
+          {type === 'solo' ? (
+            <div className="flex flex-row items-center space-x-2 rounded-xl bg-[#10194f] p-2">
+              <PersonStanding className="text-white text-xl" />
+              <div className="text-sm font-bold text-white">Solo Project</div>
+            </div>
+          ) : (
+            <div className="flex flex-row items-center space-x-2 rounded-xl bg-[#623c3b] p-2">
+              <Users className="text-white text-xl font-bold" />
+              <div className="text-sm font-bold text-white">Collaboration</div>
+            </div>
+          )}
+        </div>
+
+        <div className="text group-hover/card:inline content hidden">
+          <h1 className="font-bold text-xl md:text-2xl text-[#ffc107] relative z-10">{title}</h1>
+          <p className="font-semibold text-justify text-sm text-gray-50 relative z-10 my-4">
+            {text}
+          </p>
+        </div>
       </div>
     </a>
   );
@@ -114,7 +136,7 @@ const Experience = () => {
 
           <h1 className="mb-16 text-[#ffc107] text-justify text-[30px] font-black scale-x-[1.3] origin-left ml-8">Highlighted Projects</h1>
 
-          <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 gap-y-4 ml-[2rem]">
             {Projects.map((project, index) => (
               <CardItem
                 key={index}
@@ -123,6 +145,7 @@ const Experience = () => {
                 type={project.type}
                 img={project.dp}
                 link={project.link}
+                text={project.text}
               />
             ))}
           </div>
