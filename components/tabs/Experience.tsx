@@ -65,7 +65,7 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ position, company, time
   );
 };
 
-const CardItem: React.FC<CardItemProps> = ({ id, title, type, img, link, text }) => {
+const CardItem: React.FC<CardItemProps> = ({title, type, img, link, text }) => {
   return (
     <a href={link} className="max-w-xs w-full group/card"> 
       <div className={
