@@ -1,78 +1,36 @@
 'use client';
 
-import React from 'react'
-import Logo from './Logo'
-import Link from 'next/link'
-import Theme from './Theme'
-import { motion } from 'framer-motion';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { RiMenu5Fill } from "react-icons/ri";
+import { motion } from "framer-motion";
+import { UserRound, BriefcaseBusiness, FileText, ChevronsUpDown, Link } from 'lucide-react';
 
-const containerVariants = {
-  hidden: {
-    y: -17,
-  },
-  visible: {
-    opacity: 1,
-    y: 1,
-    transition: {
-      duration: 1.5,
-      ease: "easeInOut",
-    }
-  },
-}
+const iconMap = {
+  'Home': <UserRound />,
+  'Summary': <BriefcaseBusiness />,
+  'Experience': <FileText />,
+  'Skills': <ChevronsUpDown />,
+  'Links': <Link />
+};
 
-const Navbar = () => {
+const Navbar = ({ tabs, selectedTab, setSelectedTab }) => {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial='hidden'
-      animate='visible'
-      className="flex flex-row justify-between w-[97vw] h-[4.5rem] mt-4 pt-4 fixed mx-4 border-b-2 dark:border-indigo-200 border-indigo-950 dark:bg-dark bg-light z-20 rounded-lg">
-      <Logo />
-
-      <div className="flex-row justify-between duration-100 hidden sm:flex bg:light w-display">
-        <div className="left-96 flex-row duration-100 hidden sm:flex text-xl md:text-2xl">
-          <div className="flex flex-col">
-            <Link className="mr-4 hover:underline hover:scale-105 duration-500" href="/">Portfolio</Link>
-          </div>
-          <div className="flex flex-col">
-            <Link className="ml-2 hover:underline hover:scale-105 duration-500" href="/about">About</Link>
-          </div>
-          <div className="flex flex-col">
-            <Link className="ml-4 hover:underline hover:scale-105 duration-500" href="/contact">Contact</Link>
-          </div>
-        </div>
-      </div>
-
-      <DropdownMenu>
-        <DropdownMenuTrigger className="sm:hidden block w-12 h-6">
-          <RiMenu5Fill className="w-8 h-8" />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="dark:bg-dark bg-light z-10 mt-6 mr-6 w-[231px] h-[15rem] flex justify-center items-center flex-col text-2xl">
-          <DropdownMenuItem>
-            <Link className="ml-2 hover:underline duration-500 text-2xl" href="/">Portfolio</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link className="ml-2 hover:underline duration-500 text-2xl" href="/about">About</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link className="ml-4 hover:underline duration-500 text-2xl" href="/contact">Contact</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Theme show={true} />
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-      <Theme show={false} />
-    </motion.div>
-  )
+    <nav className="fixed bottom-16 left-[10vw] p-[3px] w-[80vw] h-[3.5rem] bg-white/30 backdrop-blur-sm shadow-md flex gap-4 justify-center rounded-full z-2">
+      {tabs.map((item) => {
+        const isSelected = item.name === selectedTab.name;
+        return (
+          <motion.button
+            key={item.name}
+            className={`flex items-center justify-center h-[3rem] w-[3rem] lg:w-[12rem] transition hover:cursor-pointer ${
+              isSelected ? 'bg-white text-black rounded-full' : 'bg-transparent text-white'
+            }`}
+            onClick={() => setSelectedTab(item)}
+          >
+            {iconMap[item.name]}
+            <span className="hidden lg:inline ml-2 font-bold">{item.name}</span>
+          </motion.button>
+        );
+      })}
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;

@@ -1,29 +1,26 @@
 import type { Metadata } from "next";
+import { Roboto } from 'next/font/google'
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: "TEBE",
-  description: "Description",
+  title: "Tisloh Tebe",
+  description: "Software Developer",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Oswald:wght@200;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="dark:bg-dark bg-light dark:text-[#f1eaff] text-[#030637] font-sans">
-        <Navbar />
+      <body className={`${roboto.className} bg-gradient-to-l from-[#ca6822] via-[#623c3b] to-[#10194f]`}>
         {children}
       </body>
     </html>

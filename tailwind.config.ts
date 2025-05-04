@@ -1,63 +1,21 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
-    darkMode: ["class"],
-    content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+module.exports = {
   theme: {
-  	extend: {
-			backgroundColor: {
-        'dark': '#030637',
-        'dark-2': '#1B1A55',
-        'light': '#f1eaff',
-        'light-2': '#FFF0F5',
-        'gold': '#F39F5A',
-        'collab': '#CD104D',
-        'footer-light': '#3C0753',
-        'footer-dark': '#E5D4FF',
-        'both': '#9290C3',
-        'transparent': 'transparent',
-      },
-      gridTemplateRows: {
-        // Simple 16 row grid
-        'card': 'repeat(5, minmax(0, 1fr))',
+    extend: {
+      fontWeight: {
+        heavy: 950,
       },
       fontFamily: {
-        'cursive': "Dancing Script", 
-        'curved': "Oswald",
+        roboto: ["Roboto", "sans-serif"],
       },
-      textColor: {
-        'light': '#030637',
-        'light-2': '#070f2b',
-        'dark': '#f1eaff',
-        'dark-2': '#F7FFE5',
-        'gold': '#F39F5A',
-        'collab': '#CD104D',
-        'both': '#9290C3'
+      animation: {
+        blink: "blink is infinite",
       },
-      width: {
-        'logo': '6rem',
-        'img': '7rem',
-        'img2': '10rem',
-        'svg': '25vw',
-        'input': '50vw',
-        'full': '100%',
-        'nine': '90%',
-        'twice': '200%',
-        'footer': '35vw',
-        'small': '37vw',
-        'display': '60vw',
-        'large': '90vw',
-        'image': '78vw',
-        'feature': '80vw',
-        'half': '50%',
-        'message': '18rem',
-      },
-  	}
+      keyframes: {
+        blink: {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0 },
+        },
+      }
+    },
   },
-  plugins: [require("tailwindcss-animate")],
 };
-export default config;
