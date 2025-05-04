@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import Navbar from "../components/Navbar";
 import { HomePage, Summary, Experience, Skills, Links } from "@/components/tabs";
 
@@ -9,7 +9,7 @@ type TabName = 'Home' | 'Summary' | 'Experience' | 'Skills' | 'Links';
 
 interface Tab {
   name: TabName;
-  component: JSX.Element;
+  component: ReactNode;
 }
 
 const tabs: Tab[] = [
