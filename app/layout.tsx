@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Tisloh Tebe",
   description: "Software Developer",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.jpg",
   },
 };
 
