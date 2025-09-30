@@ -1,0 +1,215 @@
+
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Download, Github, Linkedin, Mail, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+import { useTheme } from "../components/ThemeContext"; // Changed import path as per outline
+import FloatingElements from "../components/3d/FloatingElements";
+
+export default function Home() {
+  const { darkMode } = useTheme();
+
+  const scrollToNext = () => {
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="relative">
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* 3D Background */}
+        <div className="absolute inset-0 z-0">
+          <FloatingElements darkMode={darkMode} />
+        </div>
+        
+        {/* Gradient Overlay */}
+        <div 
+          className="absolute inset-0 z-10"
+          style={{
+            background: darkMode 
+              ? 'radial-gradient(circle at center, rgba(10, 14, 26, 0.1) 0%, rgba(10, 14, 26, 0.8) 100%)'
+              : 'radial-gradient(circle at center, rgba(254, 254, 254, 0.1) 0%, rgba(254, 254, 254, 0.8) 100%)'
+          }}
+        />
+
+        {/* Hero Content */}
+        <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <motion.p 
+              className="text-lg mb-6"
+              style={{ color: 'var(--text-secondary)' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              Senior Full-Stack Developer
+            </motion.p>
+            
+            <motion.h1 
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              Crafting Digital
+              <br />
+              <span className="gradient-text">Experiences</span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl mb-12 leading-relaxed max-w-2xl mx-auto"
+              style={{ color: 'var(--text-secondary)' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              I build beautiful, scalable web applications with modern technologies 
+              and thoughtful user experiences.
+            </motion.p>
+
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+              <Link to={createPageUrl("Projects")}>
+                <motion.button
+                  className="group px-8 py-4 rounded-full font-semibold text-white flex items-center gap-3 text-lg"
+                  style={{ background: 'var(--accent)' }}
+                  whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View My Work
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </Link>
+              
+              <motion.button
+                className="px-8 py-4 rounded-full font-semibold border-2 flex items-center gap-3 text-lg glass-effect"
+                style={{ 
+                  borderColor: 'var(--border)',
+                  color: 'var(--text-primary)'
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Download className="w-5 h-5" />
+                Download Resume
+              </motion.button>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div 
+              className="flex justify-center gap-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+            >
+              {[
+                { icon: Github, href: "https://github.com", label: "GitHub" },
+                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+                { icon: Mail, href: "mailto:alex@example.com", label: "Email" }
+              ].map((social, index) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full glass-effect"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <social.icon className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
+                </motion.a>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.button
+          onClick={scrollToNext}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <div className="p-2 rounded-full glass-effect">
+            <ChevronDown className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
+          </div>
+        </motion.button>
+      </section>
+
+      {/* Featured Skills Section */}
+      <section className="py-20 px-6" style={{ background: 'var(--bg-secondary)' }}>
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Technologies I Love
+            </h2>
+            <p className="text-xl" style={{ color: 'var(--text-secondary)' }}>
+              Building with the latest and greatest tools
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {[
+              { name: "React", level: 95 },
+              { name: "Node.js", level: 90 },
+              { name: "TypeScript", level: 88 },
+              { name: "Python", level: 85 },
+              { name: "AWS", level: 82 },
+              { name: "Docker", level: 78 },
+              { name: "GraphQL", level: 85 },
+              { name: "MongoDB", level: 80 }
+            ].map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                className="text-center glass-effect p-6 rounded-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5, scale: 1.05 }}
+              >
+                <div className="text-2xl font-bold gradient-text mb-2">
+                  {skill.level}%
+                </div>
+                <div className="font-semibold">{skill.name}</div>
+                <div className="w-full bg-gray-200 rounded-full h-2 mt-4 overflow-hidden">
+                  <motion.div
+                    className="h-2 rounded-full"
+                    style={{ background: 'var(--accent)' }}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + 0.5, duration: 1 }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -1,21 +1,17 @@
-module.exports = {
+export default {
   theme: {
     extend: {
-      fontWeight: {
-        heavy: 950,
+      colors: {
+        'bg-primary': 'var(--bg-primary)',
+        'bg-secondary': 'var(--bg-secondary)',
+        'bg-tertiary': 'var(--bg-tertiary)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'text-tertiary': 'var(--text-tertiary)',
+        'accent': 'var(--accent)',
+        'accent-secondary': 'var(--accent-secondary)',
+        'border': 'var(--border)',
       },
-      fontFamily: {
-        roboto: ["Roboto", "sans-serif"],
-      },
-      animation: {
-        blink: "blink is infinite",
-      },
-      keyframes: {
-        blink: {
-          "0%, 100%": { opacity: 1 },
-          "50%": { opacity: 0 },
-        },
-      }
     },
   },
-};
+}
