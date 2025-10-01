@@ -18,7 +18,7 @@ const About = () => {
               About <span className="gradient-text">Me</span>
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto text-[var(--text-tertiary)] dark:text-[var(--dark-text-tertiary)]">
-              I'm a passionate developer who loves creating beautiful, functional digital experiences
+              I&apos;m a passionate developer who loves creating beautiful, functional digital experiences
             </p>
           </motion.div>
 
@@ -62,7 +62,7 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="space-y-6"
             >
-              <h2 className="text-3xl font-bold text-[var(--text-secondary)] dark:text-[var(--dark-text-secondary)]">Hi, I'm Tebe Tisloh</h2>
+              <h2 className="text-3xl font-bold text-[var(--text-secondary)] dark:text-[var(--dark-text-secondary)]">Hi, I&apos;m Tebe Tisloh</h2>
               <div className="space-y-4 text-lg text-[var(--text-tertiary)] dark:text-[var(--dark-text-tertiary)]">
                 <p>
                   With over 3 years of experience in full-stack development, I specialize in creating 
@@ -70,10 +70,10 @@ const About = () => {
                 </p>
                 <p>
                   My journey started with a certificate of completion from Microverse, and since then 
-                  I've had the pleasure of working with startups and Fortune 500 companies alike.
+                  I&apos;ve had the pleasure of working with startups and Fortune 500 companies alike.
                 </p>
                 <p>
-                  When I'm not coding, you'll find me exploring new technologies, contributing to open source 
+                  When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open source 
                   projects, or enjoying the great outdoors with my camera.
                 </p>
               </div>

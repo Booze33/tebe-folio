@@ -6,9 +6,23 @@ import { Send, MessageSquare, Clock, CheckCircle } from "lucide-react";
 import { contactInfo, socialLinks } from "@/components/constactInfo";
 import { useTheme } from "@/components/ThemeContext";
 
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
 const Contact = () => {
   const { darkMode } = useTheme();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     subject: '',
@@ -16,16 +30,17 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitError, setSubmitError] = useState('');
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
 
-    if (errors[name]) {
+    if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
         [name]: ''
@@ -33,8 +48,8 @@ const Contact = () => {
     }
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) {
@@ -49,20 +64,40 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!validateForm()) return;
     
     setIsSubmitting(true);
+    setSubmitError('');
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
 
-    setTimeout(() => setIsSubmitted(false), 5000);
+      const data = await response.json();
+      console.log('Email sent successfully:', data);
+
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Email submission error:', error);
+      setSubmitError('Failed to send message. Please try again or contact me directly via email.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -76,10 +111,10 @@ const Contact = () => {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 dark:text-[var(--dark-text-secondary)]">
-              Let's <span className="gradient-text">Connect</span>
+              Let&apos;s <span className="gradient-text">Connect</span>
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto text-[var(--text-tertiary)] dark:text-[var(--dark-text-tertiary)]">
-              Have a project in mind or just want to chat? I'd love to hear from you.
+              Have a project in mind or just want to chat? I&apos;d love to hear from you.
             </p>
           </motion.div>
 
@@ -93,7 +128,7 @@ const Contact = () => {
               <div>
                 <h2 className="text-3xl font-bold mb-6 text-[var(--text-primary)] dark:text-[var(--dark-text-primary)]">Get in Touch</h2>
                 <p className="text-lg mb-8 text-[var(--text-tertiary)] dark:text-[var(--dark-text-tertiary)]">
-                  I'm always open to discussing new opportunities, creative projects, 
+                  I&apos;m always open to discussing new opportunities, creative projects, 
                   or partnerships. Feel free to reach out through any of the channels below.
                 </p>
               </div>
@@ -187,7 +222,17 @@ const Contact = () => {
                   className="flex items-center gap-2 p-4 rounded-xl mb-6 text-green-700 bg-green-50 border border-green-200"
                 >
                   <CheckCircle className="w-5 h-5" />
-                  <span className="font-medium text-[var(--text-secondary)] dark:text-[var(--dark-text-secondary)]">Message sent successfully! I'll get back to you soon.</span>
+                  <span className="font-medium text-[var(--text-secondary)] dark:text-[var(--dark-text-secondary)]">Message sent successfully! I&apos;ll get back to you soon.</span>
+                </motion.div>
+              )}
+
+              {submitError && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex items-center gap-2 p-4 rounded-xl mb-6 text-red-700 bg-red-50 border border-red-200"
+                >
+                  <span className="font-medium">{submitError}</span>
                 </motion.div>
               )}
 
@@ -269,7 +314,7 @@ const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    rows="6"
+                    rows={6}
                     className={`w-full px-4 py-3 rounded-xl border resize-none transition-colors bg-[var(--bg-tertiary)] dark:bg-[var(--dark-bg-primary)] text-[var(--text-tertiary)] dark:text-[var(--dark-text-tertiary)] ${
                       errors.message 
                         ? 'border-red-500 focus:border-red-500' 

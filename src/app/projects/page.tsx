@@ -6,9 +6,22 @@ import { ExternalLink, Github, Filter, X } from "lucide-react";
 import { projects } from "@/components/projects";
 import Image from "next/image";
 
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  category: string;
+  technologies: string[];
+  liveUrl: string;
+  githubUrl: string;
+  featured?: boolean;
+}
+
 const Projects = () => {
-  const [selectedFilter, setSelectedFilter] = useState("All");
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState<string>("All");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filters = ["All", "Web Apps", "Mobile", "E-commerce", "AI/ML"];
 
