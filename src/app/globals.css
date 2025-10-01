@@ -13,7 +13,7 @@
   --accent: #ec4899;
   --accent-secondary: #ec4899;
   --border: oklch(0.929 0.013 255.508);
-  --glass-bg: rgba(87, 87, 87, 0.8);
+  --glass-bg: rgba(241, 237, 225, 0.8);
   --gradient-start: #f1f5f9;
   --gradient-end: #ffffff;
   --dark-bg-primary: #070b15;
@@ -115,6 +115,12 @@ body {
 }
 
 .glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: opacity(20%) blur(20px);
+  border: 1px solid var(--border);
+}
+
+.glass-effect-nav {
   background: var(--dark-bg-secondary);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border);
@@ -126,6 +132,13 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   transition-delay: 0.8s;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .gradient-text {

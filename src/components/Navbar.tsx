@@ -40,7 +40,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="z-10 h-[3.5rem] w-[90vw] fixed rounded-full bottom-8 flex flex-row justify-around items-center glass-effect">
+    <div className="z-10 h-[3.5rem] w-[90vw] fixed rounded-full bottom-8 flex flex-row justify-around items-center glass-effect-nav">
       {NavMap.map((item) => {
         const isActive = pathname === item.route;
         return (
