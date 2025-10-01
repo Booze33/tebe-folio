@@ -1,87 +1,16 @@
+'use client';
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, Filter, X } from "lucide-react";
+import { projects } from "@/components/projects";
+import Image from "next/image";
 
-export default function Projects() {
+const Projects = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
 
   const filters = ["All", "Web Apps", "Mobile", "E-commerce", "AI/ML"];
-
-  const projects = [
-    {
-      id: 1,
-      title: "E-Commerce Platform",
-      category: "E-commerce",
-      description: "A full-stack e-commerce solution with React, Node.js, and Stripe integration",
-      longDescription: "Built a comprehensive e-commerce platform handling 10,000+ daily transactions. Features include real-time inventory management, advanced search, personalized recommendations, and seamless payment processing with Stripe. The platform achieves 99.9% uptime and loads in under 2 seconds.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      category: "Web Apps",
-      description: "A collaborative task management tool with real-time updates and team features",
-      longDescription: "Developed a comprehensive task management application supporting real-time collaboration for distributed teams. Includes advanced filtering, time tracking, team analytics, and integration with popular tools like Slack and GitHub. Used by 500+ teams worldwide.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-      technologies: ["React", "Firebase", "Socket.io", "Material-UI"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: false
-    },
-    {
-      id: 3,
-      title: "AI Content Generator",
-      category: "AI/ML",
-      description: "Machine learning powered content generation tool for marketers",
-      longDescription: "Created an AI-powered content generation platform that helps marketers create engaging copy 10x faster. Leverages GPT-3 and custom trained models to generate blog posts, social media content, and ad copy. Processing over 1 million requests monthly.",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
-      technologies: ["Python", "TensorFlow", "React", "FastAPI", "Docker"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: true
-    },
-    {
-      id: 4,
-      title: "Mobile Banking App",
-      category: "Mobile",
-      description: "Secure mobile banking application with biometric authentication",
-      longDescription: "Developed a secure mobile banking application with advanced biometric authentication, real-time fraud detection, and seamless user experience. Handles millions in daily transactions with bank-grade security and 4.8-star app store rating.",
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-      technologies: ["React Native", "Node.js", "PostgreSQL", "AWS"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Healthcare Dashboard",
-      category: "Web Apps",
-      description: "Medical data visualization dashboard for healthcare providers",
-      longDescription: "Built a comprehensive healthcare dashboard that visualizes patient data, tracks treatment outcomes, and provides predictive insights. Helps healthcare providers make data-driven decisions and improve patient care. HIPAA compliant with advanced security measures.",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
-      technologies: ["React", "D3.js", "Python", "Django", "PostgreSQL"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: true
-    },
-    {
-      id: 6,
-      title: "Crypto Trading Bot",
-      category: "AI/ML",
-      description: "Algorithmic trading bot using machine learning for crypto markets",
-      longDescription: "Developed an intelligent crypto trading bot that uses machine learning algorithms to analyze market trends and execute trades automatically. Achieved 23% average returns with advanced risk management and real-time market analysis.",
-      image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=600&fit=crop",
-      technologies: ["Python", "Scikit-learn", "Binance API", "Docker", "PostgreSQL"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: false
-    }
-  ];
 
   const filteredProjects = selectedFilter === "All" 
     ? projects 
@@ -90,8 +19,7 @@ export default function Projects() {
   const featuredProjects = projects.filter(project => project.featured);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
+    <div className="min-h-screen pb-[7rem] bg-[var(--bg-primary)] dark:bg-[var(--dark-bg-primary)] w-[100vw]">
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -100,15 +28,14 @@ export default function Projects() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 dark:text-[var(--dark-text-secondary)]">
               My <span className="gradient-text">Projects</span>
             </h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto text-[var(--text-tertiary)] dark:text-[var(--dark-text-tertiary)]">
               A showcase of my recent work and the technologies I love using
             </p>
           </motion.div>
 
-          {/* Filter Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,14 +46,14 @@ export default function Projects() {
               <motion.button
                 key={filter}
                 onClick={() => setSelectedFilter(filter)}
-                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                className={`px-6 py-3 rounded-full font-medium transition-all text-[var(--text-tertiary)] dark:text-[var(--dark-text-tertiary)] border border-[var(--border)] bg-[var(--bg-primary)] dark:bg-[var(--dark-bg-tertiary)] ${
                   selectedFilter === filter 
-                    ? 'text-white' 
-                    : 'glass-effect'
+                    ? 'text-white bg-[var(--chart-1)] dark:bg-[var(--chart-1)] border-transparent' 
+                    : ''
                 }`}
                 style={{
-                  background: selectedFilter === filter ? 'var(--accent)' : 'transparent',
-                  color: selectedFilter === filter ? 'white' : 'var(--text-primary)'
+                  background: selectedFilter === filter ? 'var(--chart-1)' : 'transparent',
+                  color: selectedFilter === filter ? 'white' : ''
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -139,15 +66,14 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Featured Projects */}
       {selectedFilter === "All" && (
-        <section className="py-20 px-6" style={{ background: 'var(--bg-secondary)' }}>
+        <section className="py-20 px-6 bg-[var(--bg-secondary)] dark:bg-[var(--dark-bg-secondary)]">
           <div className="max-w-6xl mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold mb-12 text-center"
+              className="text-3xl md:text-4xl font-bold mb-12 text-center dark:text-[var(--dark-text-secondary)]"
             >
               Featured Work
             </motion.h2>
@@ -165,16 +91,18 @@ export default function Projects() {
                   whileHover={{ y: -10, scale: 1.02 }}
                 >
                   <div className="relative overflow-hidden">
-                    <img
+                    <Image
+                      width={600}
+                      height={64}
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     <div className="absolute top-4 right-4">
                       <span 
                         className="px-3 py-1 rounded-full text-sm font-medium text-white"
-                        style={{ background: 'var(--accent)' }}
+                        style={{ background: 'var(--chart-1)' }}
                       >
                         Featured
                       </span>
@@ -194,7 +122,7 @@ export default function Projects() {
                           className="px-3 py-1 rounded-full text-sm font-medium"
                           style={{ 
                             background: 'var(--bg-primary)',
-                            color: 'var(--accent)'
+                            color: 'var(--chart-1)'
                           }}
                         >
                           {tech}
@@ -208,7 +136,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 font-medium"
-                        style={{ color: 'var(--accent)' }}
+                        style={{ color: 'var(--chart-1)' }}
                         whileHover={{ scale: 1.05 }}
                         onClick={(e) => e.stopPropagation()}
                       >
@@ -236,14 +164,13 @@ export default function Projects() {
         </section>
       )}
 
-      {/* All Projects Grid */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center"
+            className="text-3xl font-bold mb-12 text-center dark:text-[var(--dark-text-secondary)]"
           >
             {selectedFilter === "All" ? "All Projects" : `${selectedFilter} Projects`}
           </motion.h2>
@@ -268,7 +195,9 @@ export default function Projects() {
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
                   <div className="relative overflow-hidden">
-                    <img
+                    <Image
+                      width={400}
+                      height={40}  
                       src={project.image}
                       alt={project.title}
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -289,7 +218,7 @@ export default function Projects() {
                           className="px-2 py-1 rounded-full text-xs font-medium"
                           style={{ 
                             background: 'var(--bg-primary)',
-                            color: 'var(--accent)'
+                            color: 'var(--chart-1)'
                           }}
                         >
                           {tech}
@@ -304,7 +233,6 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Project Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -323,7 +251,9 @@ export default function Projects() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative">
-                <img
+                <Image
+                  width={800}
+                  height={80}
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   className="w-full h-64 md:h-96 object-cover"
@@ -349,7 +279,7 @@ export default function Projects() {
                       className="px-4 py-2 rounded-full font-medium"
                       style={{ 
                         background: 'var(--bg-primary)',
-                        color: 'var(--accent)'
+                        color: 'var(--chart-1)'
                       }}
                     >
                       {tech}
@@ -363,11 +293,11 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white"
-                    style={{ background: 'var(--accent)' }}
+                    style={{ background: 'var(--chart-1)' }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <ExternalLink className="w-5 h-5" />
+                    <ExternalLink className="w-5 h-5 hidden sm:block" />
                     View Live
                   </motion.a>
                   <motion.a
@@ -379,7 +309,7 @@ export default function Projects() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Github className="w-5 h-5" />
+                    <Github className="w-5 h-5 hidden sm:block" />
                     View Code
                   </motion.a>
                 </div>
@@ -389,5 +319,7 @@ export default function Projects() {
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }
+
+export default Projects;
