@@ -7,7 +7,7 @@ import { projects } from "@/components/projects";
 import Image from "next/image";
 
 interface Project {
-  id: string;
+  id: number;
   title: string;
   description: string;
   longDescription: string;
