@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Tebe Tisloh | Software Engineer",
   description: "Software Developer",
+  icons: {
+    icon: "/logo.jpg",
+  },
 };
 
 export default function RootLayout({

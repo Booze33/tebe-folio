@@ -10,6 +10,15 @@ const Experience = () => {
   const { darkMode } = useTheme();
   const [activeTab, setActiveTab] = useState("experience");
 
+  const DownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/Tisloh_FullStack_Resume.pdf';
+    link.download = 'Tisloh_FullStack_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   return (
     <div className="min-h-screen w-[100vw] flex flex-col items-center justify-center bg-[var(--bg-secondary)] dark:bg-[var(--dark-bg-secondary)] py-20 px-4">
       <section className="py-20 px-6">
@@ -32,6 +41,7 @@ const Experience = () => {
               style={{ background: 'var(--chart-1)' }}
               whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
               whileTap={{ scale: 0.95 }}
+              onClick={DownloadResume}
             >
               <Download className="w-5 h-5" />
               Download Resume

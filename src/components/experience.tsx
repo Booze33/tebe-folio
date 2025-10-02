@@ -1,60 +1,60 @@
 export const experiences = [
   {
-    company: "TechCorp Inc.",
-    role: "Senior Full-Stack Developer",
-    period: "2022 - Present",
-    location: "San Francisco, CA",
-    description: "Leading development of scalable web applications serving 1M+ users. Architected microservices infrastructure and mentored junior developers.",
+    company: "Mercor.ai",
+    role: "Software Developer",
+    period: "2024",
+    location: "Remote",
+    description: "Leading development of scalable web applications serving 1M+ users. Testing and optimizing AI/ML models for performance and reliability.",
     achievements: [
-      "Increased application performance by 40% through optimization",
-      "Led team of 5 developers on critical product features",
-      "Implemented CI/CD pipeline reducing deployment time by 60%"
+      "Enhanced frontend dashboards for real-time visualization of large-scale model evaluations.",
+      "Collaborated with backend engineers to integrate APIs into client-facing tools.",
+      "Improved data rendering and responsiveness, reducing user latency issues by 20%."
     ],
-    technologies: ["React", "Node.js", "AWS", "Docker", "TypeScript"]
+    technologies: ["Ruby", "Node.js", "Python", "C", "TypeScript"]
   },
   {
-    company: "StartupXYZ",
+    company: "Microverse",
     role: "Full-Stack Developer",
-    period: "2020 - 2022",
+    period: "2022 - 2023",
     location: "Remote",
     description: "Developed MVP from scratch and scaled to 100k+ users. Built both frontend and backend systems with modern technologies.",
     achievements: [
-      "Built entire platform serving 100k+ active users",
-      "Reduced server costs by 30% through optimizations",
-      "Implemented real-time features with WebSocket technology"
+      "Mentored 2+ developers weekly, with focus on React, API integration, and frontend best practices.",
+      "Led workshops on scalable UI design and testing practices, improving mentees’ project pass rate by 25%.",
+      "Conducted code reviews emphasizing readability, performance, and accessibility."
     ],
-    technologies: ["Vue.js", "Python", "Django", "PostgreSQL", "Redis"]
+    technologies: ["React.js", "Ruby on Rails", "JavaScript", "PostgreSQL", "Redis"]
   },
   {
-    company: "Digital Agency",
-    role: "Frontend Developer",
-    period: "2019 - 2020",
-    location: "New York, NY",
-    description: "Created responsive websites and web applications for various clients. Focused on pixel-perfect implementations and performance.",
+    company: "Calyptus",
+    role: "Web3 Frontend Developer",
+    period: "2024 - 2025",
+    location: "Remote",
+    description: "Created responsive websites and web applications to handle the smart contracts. Focused on pixel-perfect implementations and performance.",
     achievements: [
-      "Delivered 20+ client projects on time and budget",
+      "Write smart contracts in Solidity and integrate with frontends using web3.js.",
       "Improved page load speeds by average of 50%",
       "Established coding standards and best practices"
     ],
-    technologies: ["React", "JavaScript", "SASS", "Webpack", "Firebase"]
+    technologies: ["React", "JavaScript", "Web3.js", "Webpack", "Firebase"]
   }
 ];
 export const education = [
   {
-    school: "Stanford University",
-    degree: "Master of Science in Computer Science",
-    period: "2017 - 2019",
-    location: "Stanford, CA",
+    school: "Microverse",
+    degree: "Dyploma in Computer Science",
+    period: "2022 - 2023",
+    location: "Remote",
     description: "Specialized in Machine Learning and Distributed Systems. Maintained 3.8 GPA.",
     coursework: ["Machine Learning", "Distributed Systems", "Computer Vision", "Algorithms"]
   },
   {
-    school: "UC Berkeley",
-    degree: "Bachelor of Science in Computer Science",
-    period: "2013 - 2017",
-    location: "Berkeley, CA",
-    description: "Graduated Magna Cum Laude with focus on Software Engineering and Human-Computer Interaction.",
-    coursework: ["Data Structures", "Software Engineering", "HCI", "Database Systems"]
+    school: "Warsaw University of Technology",
+    degree: "Bachelor of Science in Engineering",
+    period: "2023 - 2026",
+    location: "Warsaw, PL",
+    description: "A student at Warsaw University focusing on Aerospace Engineering and Human-Computer Interaction.",
+    coursework: ["Computer Science", "Algebra", "System Design", "Microservices"]
   }
 ];
 export const certifications = [
